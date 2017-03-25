@@ -6,6 +6,7 @@ class RecipientsController < ApplicationController
   def create
     @recipient = Recipient.new(recipient_params)
     if @recipient.save
+      RecipientMailer.welcome_email(@recipient).deliver_now
       render 'create'
     else
       render 'new'
