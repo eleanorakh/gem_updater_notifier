@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class RecipientsController < ApplicationController
   def new
     @recipient = Recipient.new
@@ -16,6 +18,6 @@ class RecipientsController < ApplicationController
   private
 
   def recipient_params
-    params.require(:recipient).permit(:email, :gem)
+    params.require(:recipient).permit(:email, :gem).merge(token: SecureRandom.hex(16))
   end
 end
