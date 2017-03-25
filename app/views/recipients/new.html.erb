@@ -1,2 +1,25 @@
-<h1>Recipients#new</h1>
-<p>Find me in app/views/recipients/new.html.erb</p>
+<%= form_for @recipient do |f| %>
+
+  <% if @recipient.errors.any? %>
+    <%= pluralize(@recipient.errors.count, "error") %>
+    <ul>
+      <% @recipient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :gem %><br>
+    <%= f.text_field :gem %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
